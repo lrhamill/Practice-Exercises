@@ -1,0 +1,56 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+
+public class TakeInput {
+	
+	public static void main(String[] args) {
+		try {
+			// Open file
+			BufferedReader input = new BufferedReader(new FileReader(args[0]));
+			int generations = Integer.parseInt(args[1]);
+			
+			// Extract parameters from line 1
+			String line1 = input.readLine();
+			String[] parameters = line1.split(" "); // params as strings
+			int[] params = new int[2];
+			params[0] = Integer.parseInt(parameters[0]); // params as ints
+			params[1] = Integer.parseInt(parameters[1]);
+			
+			// Create a 2-dimensional array that corresponds
+			// to the grid
+			
+			int[][] grid = new int[params[0]][params[1]];
+			
+			for ( int i = 0; i < params[1]; i++ ) {
+				int xLoc = 0;
+				String nextLine = input.readLine();
+				String[] row = nextLine.split(" ");
+				
+				for ( String item : row ) {
+					grid[xLoc][i] = Integer.parseInt(item);
+					xLoc += 1;
+				}
+			} // Close file
+			
+			input.close();
+			
+			// Print grid to console
+			for ( int i = 0; i < params[0]; i++ ) {
+				for (int j = 0; j < params[1]; j++) {
+					System.out.print(grid[i][j] + " ");
+				} System.out.println("");
+			}
+			
+			// Exit
+			
+			System.exit(0);
+			
+		} catch (IOException ioe) {
+			System.err.println( "Input/Ouput error" );
+			System.exit(1);
+		}
+	}
+
+}

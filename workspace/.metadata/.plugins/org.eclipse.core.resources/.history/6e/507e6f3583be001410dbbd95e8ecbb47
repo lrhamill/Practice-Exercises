@@ -1,0 +1,21 @@
+
+public class Cell {
+	
+	boolean alive = true;
+	
+	public Cell(boolean life) {
+		alive = life;
+	}
+	
+	public String toString() {
+		if (alive) { return "1"; }
+		else { return "0"; }
+	}
+	
+	public boolean getLife() {
+		return alive;
+	}
+	
+	
+
+}

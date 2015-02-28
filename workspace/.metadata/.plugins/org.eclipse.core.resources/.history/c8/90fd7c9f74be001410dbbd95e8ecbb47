@@ -1,0 +1,14 @@
+
+public class Cell {
+	
+	boolean alive = true;
+	
+	public Cell(boolean life) {
+		alive = life;
+	}
+	
+	public boolean getLife() {
+		return alive;
+	}
+
+}
