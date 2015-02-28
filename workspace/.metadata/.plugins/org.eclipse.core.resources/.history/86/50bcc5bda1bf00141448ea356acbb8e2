@@ -108,7 +108,8 @@ public class Generation {
 	
 	private Cell getNewCell( Cell target, int rowLoc, int columnLoc ) {
 		
-		// Clarify whether there are rows/columns adjacent to target
+		// Clarify whether there are rows/columns adjacent
+		// to target
 		
 		boolean left = true;
 		boolean right = true;
@@ -162,10 +163,11 @@ public class Generation {
 	
 	public Cell[][] getNextGen() {
 		
-		Cell[][] nextGen = new Cell[rows][columns];			
+		Cell[][] nextGen = new Cell[rows][columns];
+			
 		
 		for ( int i = 0; i < rows; i++ ) {
-			for ( int j = 0; j < columns; j++ ) {
+			for (int j = 0; j < columns; j++) {
 				nextGen[i][j] = getNewCell( currentGen[i][j], i, j );
 			}
 		}
@@ -185,5 +187,21 @@ public class Generation {
 				}
 			}
 		return sum;
-	}	
+	}
+	
+//	public long getGenerations( int time ) {
+//		
+//		// Repeats nextGen for a given number of generations
+//		
+//		long output = 0;
+//
+//		for ( int i = 0; i < time; i++ ) {
+//			output = getNextGen();
+//		}
+//		
+//		printGen();
+//		return output;
+//		
+//	}
+	
 }
