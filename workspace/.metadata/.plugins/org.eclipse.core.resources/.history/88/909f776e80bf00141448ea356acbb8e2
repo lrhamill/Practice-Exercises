@@ -54,15 +54,11 @@ public class Cell {
 		if ( alive ) {
 			if ( totalNeighbour < 2 || totalNeighbour > 3 ) {
 				return false; // cell dies
-			} else { 
-				return true; // cell survives
-				} 
+			} else { return true; } // cell survives
 		} else {
 			if ( totalNeighbour == 3 ) {
 				return true; // cell is born
-			} else { 
-				return false; // no new cell
-			} 
+			} else { return false; } // no new cell
 		}
 		
 	}

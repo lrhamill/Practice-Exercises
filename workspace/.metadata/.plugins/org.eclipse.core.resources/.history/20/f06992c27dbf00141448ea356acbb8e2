@@ -7,7 +7,7 @@ public class TakeInput {
 	public static void main(String[] args) {
 		try {
 			// Open file & assign generations argument to a meaningful variable name
-			BufferedReader input = new BufferedReader( new FileReader(args[0] ));
+			BufferedReader input = new BufferedReader(new FileReader(args[0]));
 			int generations = Integer.parseInt(args[1]);
 			
 			// Extract parameters from line 1
@@ -17,7 +17,8 @@ public class TakeInput {
 			params[0] = Integer.parseInt(parameters[0]); // params as ints
 			params[1] = Integer.parseInt(parameters[1]); 
 			
-			// Create a 2-dimensional array that corresponds to the grid
+			// Create a 2-dimensional array that corresponds
+			// to the grid
 			
 			int[][] grid = new int[params[0]][params[1]];
 			
@@ -41,7 +42,7 @@ public class TakeInput {
 			Cell[][] cellGrid = new Cell[params[0]][params[1]];
 			
 			for ( int i = 0; i < params[0]; i++ ) {
-				for ( int j = 0; j < params[1]; j++ ) {
+				for (int j = 0; j < params[1]; j++) {
 					if ( grid[i][j] == 0 ) {
 						cellGrid[i][j] = new Cell(false);
 					} else {
@@ -52,28 +53,25 @@ public class TakeInput {
 			
 			// Create generation object
 					
-			Generation gen = new Generation( cellGrid, params[0], params[1] );
-			
-			// Now the program loops through each generation.
-			// This can take a long time for > 5000 generations.
+			Generation gen = new Generation(cellGrid, params[0], params[1]);
 			
 			for ( int i = 0; i < generations; i++ ) {
-				
 				Cell[][] nextGen = gen.getNextGen();
-				
+				if ( i % 10000 == 0 ) { System.out.println(i); }
 				int x = nextGen.length;
 				int y = nextGen[0].length;
-				gen = new Generation( nextGen, x, y );
+				gen = new Generation(nextGen, x, y);
 			}
 			
 			long output = gen.getSum();
-			System.out.println( output );
+//			gen.printGen();
+			System.out.println(output);
 			
 			// Exit
 			
 			System.exit(0);
 			
-		} catch ( IOException ioe ) {
+		} catch (IOException ioe) {
 			System.err.println( "Input/Ouput error" );
 			System.exit(1);
 		}

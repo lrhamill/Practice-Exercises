@@ -24,7 +24,6 @@ public class Generation {
 		
 		rows = x;
 		columns = y;
-		
 		// See if we need to expand 
 		boolean expandUp = false;
 		boolean expandDown = false;
@@ -91,7 +90,7 @@ public class Generation {
 			for ( int j = 0; j < y; j++ ) {
 				
 				// Add a dead cell to the start of the row if needed
-				if ( j == 0 && expandLeft ) {
+				if ( j == 0 & expandLeft ) {
 					currentGen[i + topOffset][0] = new Cell(false);
 				}
 				
