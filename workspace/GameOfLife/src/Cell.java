@@ -18,8 +18,8 @@ public class Cell {
 	}
 	
 	public String toString() {
-		if (alive) { return "1"; }
-		else { return "0"; }
+		String output = (alive) ? "1" : "0";
+		return output;
 	}
 	
 	public boolean getLife() {

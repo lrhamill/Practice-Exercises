@@ -9,13 +9,12 @@ public class Generation {
 	public void printGen() {
 		
 		// Prints currentGen to console.
-		// Useful for debugging.
+		// Useful for debugging. Not used in the final program.
 		
 		for ( Cell[] row : currentGen ) {
 			for ( Cell item : row ) {
 				System.out.print( item + " " );
-			}
-			System.out.println("");
+			}System.out.println("");
 		} System.out.println("");
 	}
 	
@@ -52,11 +51,11 @@ public class Generation {
 				expandLeft = true;
 				columns += 1; 
 				}
-			if ( input [i][y-1].getLife() && ! expandRight) {
+			if ( input [i][y-1].getLife() && ! expandRight ) {
 				expandRight = true; 
 				columns += 1;
 				}
-			if ( expandLeft && expandRight) {
+			if ( expandLeft && expandRight ) {
 				break;
 			}
 		}
@@ -79,26 +78,25 @@ public class Generation {
 			}
 		}
 		
-		// Insert input into currentGen
+		// Set up offset values to insert input into currentGen
 		
-		int leftOffset = 0;
-		if ( expandLeft ) { leftOffset += 1; }
-		int topOffset = 0;
-		if ( expandUp ) { topOffset += 1; }
+		int leftOffset = ( expandLeft ) ? 1 : 0;
+		int topOffset = ( expandUp ) ? 1 : 0;
 		
-		// add rows from input
+		// Add rows from input
 		for ( int i = 0; i < x;  i++ ) {
 			for ( int j = 0; j < y; j++ ) {
 				
-				// Add a dead cell to the start of the row if needed
+				// Put entry from input into currentGen
+				currentGen[i + topOffset][j + leftOffset] = input[i][j];
+				
+				// Additionally, add a dead cell to the start of the row if needed
 				if ( j == 0 && expandLeft ) {
 					currentGen[i + topOffset][0] = new Cell(false);
 				}
 				
-				currentGen[i + topOffset][j + leftOffset] = input[i][j];
-				
-				// Add a dead cell to the end of the row if needed
-				if ( j == y - 1 && expandRight ) {
+				// Additionally, add a dead cell to the end of the row if needed
+				else if ( j == y - 1 && expandRight ) {
 					currentGen[i + topOffset][columns - 1] = new Cell(false);
 				}
 			}	
@@ -152,9 +150,7 @@ public class Generation {
 		
 		// Find out if cell is alive
 		boolean survival;
-		survival = target.nextCell();
-		
-		// New cell
+		survival = target.nextCell();		
 		
 		return new Cell(survival);
 		
@@ -177,6 +173,9 @@ public class Generation {
 	}
 	
 	public long getSum() {
+		// Returns the number of live cells inside the generation
+		// The return type is long to support huge generations
+		
 		long sum = 0;
 				
 		for ( Cell[] item : currentGen ) {

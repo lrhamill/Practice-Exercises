@@ -14,8 +14,8 @@ public class TakeInput {
 			String line1 = input.readLine();
 			String[] parameters = line1.split(" "); // params as strings
 			int[] params = new int[2];
-			params[0] = Integer.parseInt(parameters[0]); // params as ints
-			params[1] = Integer.parseInt(parameters[1]); 
+			params[1] = Integer.parseInt(parameters[0]); // params as ints
+			params[0] = Integer.parseInt(parameters[1]); 
 			
 			// Create a 2-dimensional array that corresponds to the grid
 			
@@ -32,7 +32,6 @@ public class TakeInput {
 				}
 			}
 			
-			// Close file
 			
 			input.close();
 			
@@ -55,7 +54,6 @@ public class TakeInput {
 			Generation gen = new Generation( cellGrid, params[0], params[1] );
 			
 			// Now the program loops through each generation.
-			// This can take a long time for > 5000 generations.
 			
 			for ( int i = 0; i < generations; i++ ) {
 				
@@ -65,7 +63,7 @@ public class TakeInput {
 				int y = nextGen[0].length;
 				gen = new Generation( nextGen, x, y );
 			}
-			
+
 			long output = gen.getSum();
 			System.out.println( output );
 			
